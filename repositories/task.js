@@ -65,12 +65,9 @@ module.exports = {
     getAllTasks: async (userId) => {
         let tasks;
         try {
-            tasks = await Task.find({userId: userId});
+            tasks = await Task.find({userId: userId}).lean();
         } catch (e) {
             throw new Error('Something went wrong!')
-        }
-        if (tasks.length === 0) {
-            throw new Error('There is no any task!')
         }
         return tasks;
     },

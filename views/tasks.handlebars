@@ -1,0 +1,21 @@
+<h2>Tasks</h2>
+
+{{#if tasks}}
+<ul>
+    {{#each tasks}}
+        <li><h4>{{text}}</h4></li>
+        <form action="tasks/delete" method="POST">
+            <input type="hidden" name="id" value="{{_id}}">
+            <input type="submit" name="delete" value="Delete">
+        </form>
+    {{/each}}
+</ul>
+{{else}}
+<h3>No tasks.</h3>
+{{/if}}
+
+<form action="tasks/create" method="POST">
+    <label for="text">Write a new task</label>
+    <input type="text" name="text">
+    <input type="submit" name="create" value="Create">
+</form>
