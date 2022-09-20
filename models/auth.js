@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 const authSchema = mongoose.Schema({
     userId: String,
+    ipAddress: String,
+    active: Boolean,
     activatedTime: Date,
 });
 

@@ -49,7 +49,7 @@ const handleSignInCredentials = async (req, res) => {
         return res.render('sign-in', {errorMessage: 'This password does not match this email!'});
     }
 
-    await auth.activateUser(profile._id);
+    await auth.activateUser(profile._id, req.ip);
     res.cookie('userId', profile._id)
     res.redirect(303, 'tasks');
 };
@@ -87,7 +87,7 @@ const handleSignUpCredentials = async (req, res) => {
         return res.redirect(303, 'sign-in');
     }
 
-    await auth.activateUser(profile._id);
+    await auth.activateUser(profile._id, req.ip);
     res.cookie('userId', profile._id)
     res.redirect(303, 'tasks');
 };
