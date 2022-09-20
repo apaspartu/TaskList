@@ -3,7 +3,9 @@ const expressHandlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 require('./lib/db.js');
-const {createProfile, getProfile, deleteProfile, createTask, deleteTask, editTask} = require("./lib/db");
+
+const task = require('./repositories/task.js');
+const user = require('./repositories/user.js');
 
 const app = express();
 
@@ -41,7 +43,7 @@ app.get('/auth', (req, res) => {
     res.send('Auth!');
 });
 
-app.listen(port, () => console.log('TaskList app started on http://localhost:${port}'));
+app.listen(port, () => console.log(`TaskList app started on http://localhost:${port}`));
 
 
 // createProfile('vlad@sff.dfdf', 'password').then((result) => {
@@ -53,24 +55,31 @@ app.listen(port, () => console.log('TaskList app started on http://localhost:${p
 //         });
 //     });
 // });
-
-// createProfile('vlad@mail.com', 'password')
-//     .then(() => {
 //
+// user.createProfile('mike@mail.com', 'password')
+//     .then((res) => {
+//         console.log(res)
 //     })
-// getProfile('vlad@mail.com').then((profile) => {
+// user.getProfile('vlad@mail.com').then((profile) => {
 //     console.log(profile)
-//     createTask('hello', profile._id)
+//     task.createTask('hello', profile._id)
 //         .then((result) => {
-//             console.loge(result)
+//             console.log(result)
 //         })
-//     createTask('right', profile._id)
+//     task.createTask('right', profile._id)
 //         .then((result) => {
 //             console.log(result)
 //         })
 // });
 
-editTask("63295a688b824a02d54344c3")
+task.markAsUnDone("632970ddf4c4351b92cf33ab")
     .then((res) => {
         console.log(res);
     });
+
+// user.getProfile('vlad@mail.com').then((profile) => {
+//     task.getAllTasks(profile._id)
+//         .then(res => {
+//             console.log(res);
+//         });
+// });r
