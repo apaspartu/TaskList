@@ -69,6 +69,6 @@ module.exports = {
         } catch (e) {
             throw new Error('Something went wrong!')
         }
-        return tasks;
+        return tasks.reverse();
     },
 }

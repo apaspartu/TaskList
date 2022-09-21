@@ -1,21 +1,55 @@
-<h2>Tasks</h2>
+<a href="/logout" class="logout">Log Out</a>
+<link rel="stylesheet" href="css/tasks.css">
+<header>
+    <h2>Tasks</h2>
+</header>
 
-{{#if tasks}}
-<ul>
-    {{#each tasks}}
-        <li><h4>{{text}}</h4></li>
-        <form action="tasks/delete" method="POST">
-            <input type="hidden" name="id" value="{{_id}}">
-            <input type="submit" name="delete" value="Delete">
-        </form>
-    {{/each}}
-</ul>
-{{else}}
-<h3>No tasks.</h3>
-{{/if}}
+<div class="task-panel">
+    <div class="all-tasks">
+        {{#if tasks}}
+        {{#each tasks}}
+            <li class="task">
+                <form action="tasks/edit" method="POST" class="edit-field">
+                    <input type="hidden" name="id" value="{{_id}}">
+                    <textarea type="text" class="task-text {{#if done}}done{{/if}}" oninput="auto_grow(this)" name="newText">{{text}}</textarea>
+                    <button type="submit" name="edit" value="Edit" class="edit-button">
+                        <span class="material-symbols-outlined">
+                            draw
+                        </span>
+                    </button>
+                </form>
+                <form action="tasks/change-done" method="POST" class="mark-task">
+                    <input type="hidden" name="id" value="{{_id}}">
+                    <input type="hidden" name="done" value="{{done}}">
+                    <button type="submit" name="mark" value="Mark">
+                        <span class="material-symbols-outlined">
+                            {{#if done}}
+                            unpublished
+                            {{else}}
+                            check_circle
+                            {{/if}}
+                        </span>
+                    </button>
+                </form>
+                <form action="tasks/delete" method="POST" class="delete-task">
+                    <input type="hidden" name="id" value="{{_id}}">
+                    <button type="submit" name="delete" value="Delete">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                    </button>
+                </form>
+            </li>
+        {{/each}}
+        {{else}}
+        <h3>No tasks.</h3>
+        {{/if}}
+    </div>
+    <form action="tasks/create" method="POST" class="create-new">
+        <label for="text">Create new task</label>
+        <textarea type="text" name="text" placeholder="Type something..." class="text-field"></textarea>
+        <input type="submit" name="create" value="Create">
+    </form>
+</div>
 
-<form action="tasks/create" method="POST">
-    <label for="text">Write a new task</label>
-    <input type="text" name="text">
-    <input type="submit" name="create" value="Create">
-</form>
+<script src="js/tasks.js"></script>

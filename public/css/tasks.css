@@ -1,0 +1,190 @@
+body {
+    background-color: rgb(255, 255, 255);
+}
+header h2 {
+    margin-bottom: 40px;
+}
+.task-panel {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+.create-new {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-left: 1px solid lightgray;
+    padding-left: 30px;
+    gap: 10px;
+}
+.create-new label {
+    margin-left: 0;
+    font-size: 1.08rem;
+    margin-bottom: 10px;
+}
+.create-new input {
+    width: 200px;
+}
+.text-field {
+    width: 400px;
+    height: 200px;
+    border: 2px solid rgb(165, 165, 165);
+    border-radius: 8px;
+    resize: none;
+    padding: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    outline: none;
+}
+.all-tasks {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 10px;
+}
+.task {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    gap: 10px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 2px 6px 1px rgb(222, 222, 222);
+    border-radius: 8px;
+    margin-bottom: 15px;
+    
+}
+.task:hover {
+    background-color: rgb(249, 249, 249);
+}
+.task-text {
+    width: 100%;
+    margin: 0;
+    line-break:normal;
+    word-wrap: break-word;
+    white-space: pre-line;
+    background-color: transparent;
+    resize: none;
+    border: 0;
+    font-size: 1.05rem;
+    overflow: hidden;
+    outline: none;
+    border-radius: 5px;
+}
+
+.task-text-editable {
+    outline: 2px solid blue;
+}
+.all-tasks h3 {
+    text-align: center;
+}
+.delete-task button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    border: 0;
+    background-color: rgb(255, 190, 190);
+    border-radius: 20px;
+    height: 35px;
+}
+.delete-task button:hover {
+    background-color: rgb(255, 126, 126);
+}
+.delete-task button:active {
+    background-color: rgb(255, 86, 86);
+}
+.mark-task button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    border: 0;
+    background-color: rgb(129, 255, 79);
+    border-radius: 20px;
+    height: 35px;
+}
+.mark-task button:hover {
+    background-color: rgb(75, 221, 109);
+}
+.mark-task button:active {
+    background-color: rgb(31, 204, 40);
+}
+.done {
+    text-decoration: line-through;
+    text-decoration-thickness: 1.5px;
+    text-decoration-color: rgb(51, 4, 4);
+}
+.edit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    border: 0;
+    background-color: rgb(255, 147, 32);
+    border-radius: 20px;
+    height: 35px;
+}
+.edit-button:hover {
+    background-color: rgb(255, 180, 60);
+}
+.edit-button:active {
+    background-color: rgb(204, 135, 31);
+}
+.edit-field {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px 18px 18px 6px ;
+    padding: 4px;
+    padding-right: 5px;
+}
+.edit-field:focus {
+    outline: 2px solid rgb(94, 94, 94);
+}
+.edit-field:hover {
+    outline: 2px solid rgb(94, 94, 94);
+}
+@media screen and (max-width: 900px) {
+    .task-panel {
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
+    }
+    .create-new {
+        border: none;
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 20px;
+        padding-left: 0;
+    }
+    main {
+        margin-top: 30px;
+    }
+    .all-tasks {
+        width: auto;
+    }
+    .task {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .task-panel {
+        width: 100%;
+    }
+    .create-new {
+        width: 80%;
+        margin: 0;
+    }
+    .text-field {
+        width: 100%;
+    }
+    .all-tasks {
+        width: 100%;
+    }
+    .task {
+         width: 90%;
+    }
+}

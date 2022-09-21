@@ -1,11 +1,13 @@
-{{#if errorMessage}}
-<h4>{{errorMessage}}</h4>
-{{/if}}
+<h1>SignIn</h1>
 
-<form action="" method="POST">
+<form action="" method="POST" class="auth-form">
+    {{#if errorMessage}}
+    <h4 class="error">{{errorMessage}}</h4>
+    {{/if}}
+    
     <label for="email">Email</label>
-    <input type="email" name="email" required>
+    <input type="email" name="email" required placeholder="Type your email">
     <label for="password">Password</label>
-    <input type="password" name="password">
+    <input type="password" name="password" placeholder="Type your password">
     <input type="submit" name="form" value="SignIn">
 </form>

@@ -5,7 +5,8 @@ const {
     showSignIn,
     showSignUp,
     handleSignInCredentials,
-    handleSignUpCredentials
+    handleSignUpCredentials,
+    logOut
 } = require('../controllers/auth_controllers.js');
 
 router.get('/sign-in', showSignIn);
@@ -13,5 +14,7 @@ router.post('/sign-in', handleSignInCredentials);
 
 router.get('/sign-up', showSignUp);
 router.post('/sign-up', handleSignUpCredentials);
+
+router.get('/logout', logOut);
 
 module.exports = router;
