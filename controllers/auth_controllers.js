@@ -92,10 +92,21 @@ const handleSignUpCredentials = async (req, res) => {
     res.redirect(303, 'tasks');
 };
 
+const logOut = async (req, res) => {
+    const userid = req.cookies.userId;
+    if (!await auth.isUserActive(userid, req.ip)) {
+        res.clearCookie('userId')
+        return res.redirect(303, '/sign-in');
+    }
+    await auth.deactivateUser(userid);
+
+    res.redirect(303, '/sign-in');
+}
 
 module.exports = {
     showSignIn,
     showSignUp,
     handleSignInCredentials,
-    handleSignUpCredentials
+    handleSignUpCredentials,
+    logOut
 };

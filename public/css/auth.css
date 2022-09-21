@@ -1,0 +1,44 @@
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    gap: 15px;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    border-radius: 10px;
+    outline: 0;
+    border: 2px solid rgb(97, 155, 255);
+    padding: 10px;
+    font-size: 0.95rem;
+}
+input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
+    outline: 2px solid lightblue;
+}
+input[type="submit"] {
+    margin-top: 20px;
+    padding: 12px;
+    border-radius: 3px;
+    border: none;
+    background-color: rgb(127, 174, 255);
+    font-size: 1rem;
+    transition: all 0.1s ease;
+}
+input[type="submit"]:hover {
+    background-color: rgb(111, 138, 255);
+}
+input[type="submit"]:active {
+    background-color: rgb(81, 111, 246);
+}
+label {
+    margin-left: 10px;
+}
+.error {
+    background-color: rgb(255, 102, 153);
+    color: rgb(255, 255, 255);
+    width: 100%;
+    padding: 12px 0;
+    text-align: center;
+    border-radius: 3px;
+    font-weight: 500;
+}

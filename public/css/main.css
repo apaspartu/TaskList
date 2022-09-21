@@ -1,3 +1,51 @@
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Roboto, Arial, Helvetica, sans-serif;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 60px;
+}
+.logout {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-family: Roboto, Arial;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+.logout:hover {
+    background-color: rgb(255, 201, 130);
+}
+span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.auth-button {
+    padding: 12px 40px;
+    background-color: rgb(255, 191, 0);
+    color: rgb(46, 36, 1);
+    border-radius: 7px;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: all 0.1s ease;
+    border: none;
+}
+.auth-button:hover {
+    background-color: rgb(224, 183, 21)
+}
+.auth-button:active {
+    background-color: rgb(239, 178, 24);
+}
+.greeting {
+    margin-bottom: 50px;
 }
