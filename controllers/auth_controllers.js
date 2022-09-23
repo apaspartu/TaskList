@@ -18,10 +18,25 @@ function createHash(string) {
     return crypto.createHash('sha256').update(string).digest('base64');
 }
 
+const authMiddleware = async (req, res, next) => {
+// Check whether this user is logged in, else redirect to sign-in
+    res.authorized = true;
+    const userid = req.cookies.userId;
+    if (!await auth.isUserActive(userid, req.ip)) {
+        res.clearCookie('userId')
+        res.authorized = false;
+        res.redirect(303, '/sign-in');
+    } else {
+        next();
+        await auth.activateUser(userid, req.ip);
+    }
+};
+
+
 // --- SIGN IN ---
-const showSignIn = ((req, res) => {
+const showSignIn = async (req, res) => {
     res.render('sign-in')
-});
+};
 
 const handleSignInCredentials = async (req, res) => {
     const password = req.body.password, email = req.body.email;
@@ -55,9 +70,9 @@ const handleSignInCredentials = async (req, res) => {
 };
 
 // --- SIGN UP ---
-const showSignUp = ((req, res) => {
+const showSignUp = async (req, res) => {
     res.render('sign-up')
-});
+};
 
 const handleSignUpCredentials = async (req, res) => {
     const password = req.body.password, email = req.body.email;
@@ -74,7 +89,12 @@ const handleSignUpCredentials = async (req, res) => {
     try {
         result = await user.createProfile(email, passwordHash);
     } catch (e) {
-        return res.render('sign-up', {errorMessage: 'Something went wrong. Try again!'})
+        if (e.message === 'This email is already taken.') {
+            return res.render('sign-up', {errorMessage: 'This email is already taken.'})
+        } else {
+            return res.render('sign-up', {errorMessage: 'Something went wrong. Try again!'})
+        }
+
     }
     if (!result) {
         return res.render('sign-up', {errorMessage: 'Something went wrong. Try again!'})
@@ -99,6 +119,7 @@ const logOut = async (req, res) => {
         return res.redirect(303, '/sign-in');
     }
     await auth.deactivateUser(userid);
+    res.clearCookie('userId')
 
     res.redirect(303, '/sign-in');
 }
@@ -108,5 +129,6 @@ module.exports = {
     showSignUp,
     handleSignInCredentials,
     handleSignUpCredentials,
-    logOut
+    logOut,
+    authMiddleware,
 };

@@ -13,7 +13,7 @@ const createTask = async (req, res) => {
 
     await task.createTask(text, userid);
 
-    return res.redirect(303, '/tasks');
+    res.redirect(303, '/tasks');
 };
 
 const editTask = async (req, res) => {

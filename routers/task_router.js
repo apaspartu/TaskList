@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const { authMiddleware } = require('../controllers/auth_controllers.js')
+
 
 const {
     showAllTasks,
@@ -9,10 +11,10 @@ const {
     changeDone,
 } = require('../controllers/task_controllers.js');
 
-router.get('/', showAllTasks);
-router.post('/create', createTask);
-router.post('/edit', editTask);
-router.post('/delete', deleteTask);
-router.post('/change-done', changeDone);
+router.get('/', authMiddleware, showAllTasks);
+router.post('/create', authMiddleware, createTask);
+router.post('/edit', authMiddleware, editTask);
+router.post('/delete', authMiddleware, deleteTask);
+router.post('/change-done', authMiddleware, changeDone);
 
 module.exports = router;

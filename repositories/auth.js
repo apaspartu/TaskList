@@ -44,7 +44,7 @@ module.exports = {
 
         let result;
         try {
-            result = await Auth.deleteOne({userid: record.userId});
+            result = await Auth.updateOne({userid: record.userId}, {active: false});
         } catch(e) {
             throw new Error('Something went wrong!')
         }

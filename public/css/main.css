@@ -49,3 +49,8 @@ span {
 .greeting {
     margin-bottom: 50px;
 }
+.another {
+    margin-top: 20px;
+    text-decoration: none;
+    font-size: 1rem;
+}
