@@ -56,7 +56,8 @@ app.use('/tasks', taskRouter);
 
 app.use((err, req, res, next) => {
     res.status(500);
-    res.render('500');
+    console.log('hello')
+    res.render('500', {error: err});
 });
 
 app.use((req, res) => {
@@ -65,4 +66,3 @@ app.use((req, res) => {
 });
 
 app.listen(port, () => console.log(`TaskList app started on http://localhost:${port}`));
-

@@ -19,9 +19,9 @@ function createHash(string) {
 }
 
 // --- SIGN IN ---
-const showSignIn = ((req, res) => {
+const showSignIn = async (req, res) => {
     res.render('sign-in')
-});
+};
 
 const handleSignInCredentials = async (req, res) => {
     const password = req.body.password, email = req.body.email;
@@ -55,9 +55,9 @@ const handleSignInCredentials = async (req, res) => {
 };
 
 // --- SIGN UP ---
-const showSignUp = ((req, res) => {
+const showSignUp = async (req, res) => {
     res.render('sign-up')
-});
+};
 
 const handleSignUpCredentials = async (req, res) => {
     const password = req.body.password, email = req.body.email;
@@ -99,6 +99,7 @@ const logOut = async (req, res) => {
         return res.redirect(303, '/sign-in');
     }
     await auth.deactivateUser(userid);
+    res.clearCookie('userId')
 
     res.redirect(303, '/sign-in');
 }
